@@ -5,6 +5,8 @@ nome = 'Vinicius'
 idade = 28
 telefone = 993319440
 
+pessoas = dict()
+
 pessoa_manager = PessoaManager()
 nova_pessoa = pessoa_manager.criar_pessoa(cpf, nome, idade, telefone)
 

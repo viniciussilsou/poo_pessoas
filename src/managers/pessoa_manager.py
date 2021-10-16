@@ -5,6 +5,13 @@ class PessoaManager:
     def __init__(self):
         self.pessoas = list()
 
+#criar obj em json e manipular o json
+#converter obj pessoa em dict
+#escolher como salvar json e csv
+#criar classe pra manipular(ler/gravar) JSON e Csv
+
+
+
     def criar_pessoa(self, cpf, nome, idade, telefone):
 
         nova_pessoa = Pessoa(cpf=cpf, nome=nome, idade=idade, telefone=telefone)
@@ -34,3 +41,8 @@ class PessoaManager:
 
         pessoa = self.buscar_pessoa(cpf)
         self.pessoas.remove(pessoa)
+
+    def createDict(self):
+
+        return {'cpf': Pessoa.cpf, 'nome': self.nome, 'idade': self.idade, 'telefone': self.telefone}
+
