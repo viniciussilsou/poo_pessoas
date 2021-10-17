@@ -1,21 +1,24 @@
+from typing import List
+
+from src.db.database import Database
 from src.models.pessoa import Pessoa
 
 
 class PessoaManager:
+    database: Database
+    pessoas: List[Pessoa]
+
     def __init__(self):
-        self.pessoas = list()
-
-#criar obj em json e manipular o json
-#converter obj pessoa em dict
-#escolher como salvar json e csv
-#criar classe pra manipular(ler/gravar) JSON e Csv
-
+        self.database = Database()
+        self.pessoas = Database.ler_pessoas()
 
 
     def criar_pessoa(self, cpf, nome, idade, telefone):
 
         nova_pessoa = Pessoa(cpf=cpf, nome=nome, idade=idade, telefone=telefone)
         self.pessoas.append(nova_pessoa)
+
+        self.database.gravar_pessoas(self.pessoas)
 
         return nova_pessoa
 
@@ -35,6 +38,8 @@ class PessoaManager:
         pessoa.idade = idade
         pessoa.telefone = telefone
 
+        self.database.gravar_pessoas(self.pessoas)
+
         return pessoa
 
     def excluir_pessoa(self, cpf):
@@ -42,7 +47,7 @@ class PessoaManager:
         pessoa = self.buscar_pessoa(cpf)
         self.pessoas.remove(pessoa)
 
-    def createDict(self):
+        self.database.gravar_pessoas(self.pessoas)
 
-        return {'cpf': Pessoa.cpf, 'nome': self.nome, 'idade': self.idade, 'telefone': self.telefone}
+
 
